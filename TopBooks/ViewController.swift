@@ -13,6 +13,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let api = APIManager()
+        api.loadData("https://itunes.apple.com/us/rss/topfreeebooks/limit=10/json", completion: didLoadData)
+    }
+    
+    func didLoadData(books:[Books]){
+        for item in books{
+            print("\(item.bName) - \(item.bAuthor)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
